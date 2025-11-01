@@ -2,9 +2,9 @@
 Projet Api Rest Symfony - Licence - Pour C.Haller.
 
 # Stack
-Method : Api Rest.
-Framework : Symfony.
-Outils : Postman, Mailer.
+ Method : Api Rest.
+ Framework : Symfony.
+ Outils : Postman, Mailer.
 
 ## TP: Créer une API Symfony
 
