@@ -48,4 +48,19 @@ class VideoGameRepository extends ServiceEntityRepository
             ->setMaxResults($limit);
         return $qb->getQuery()->getResult();
     }
+
+
+    public function findUpcomingGames(): array
+    {
+        $today = new \DateTimeImmutable();
+        $nextWeek = $today->modify('+7 days');
+
+        return $this->createQueryBuilder('g')
+            ->where('g.releaseDate BETWEEN :today AND :nextWeek')
+            ->setParameter('today', $today->format('Y-m-d'))
+            ->setParameter('nextWeek', $nextWeek->format('Y-m-d'))
+            ->orderBy('g.releaseDate', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -31,12 +31,9 @@ final class NewsletterSchedule implements ScheduleProviderInterface
         ;
     }
 
-    public function __invoke(Schedule $schedule, MessageBusInterface $bus): void
+    public function __invoke(Schedule $schedule): void
     {
-        $schedule->add(MessengerTask::fromMessage(new SendEmailMessage(
-            'user@example.com',
-            'Bonjour !',
-            '<p>Ceci est un email planifié.</p>'
-        )))->cron('30 8 * * 1'); // tous les lundis à 8h30 voir consignes
+        $schedule->add(CommandTask::create('app:send-newsletter')
+        )->cron('30 8 * * 1'); // tous les lundis à 8h30 voir consignes/diapo
     }
 }

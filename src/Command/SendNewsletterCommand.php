@@ -13,6 +13,9 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 
 use App\Message\SendEmailMessage;
 use Symfony\Component\Messenger\MessageBusInterface;
+use App\Repository\UserRepository;
+use App\Repository\GameRepository;
+use App\Service\EmailService;
 
 #[AsCommand(
     name: 'app:send-newsletter',
@@ -20,8 +23,11 @@ use Symfony\Component\Messenger\MessageBusInterface;
 )]
 class SendNewsletterCommand extends Command
 {
-    public function __construct(private MessageBusInterface $bus)
-    {
+    public function __construct(        
+        private UserRepository $userRepository,
+        private GameRepository $gameRepository,
+        private EmailService $emailService
+    ){
         parent::__construct();
     }
 
@@ -35,13 +41,20 @@ class SendNewsletterCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $this->bus->dispatch(new SendEmailMessage(
-            'user@example.com',
-            'Email envoyé via commande',
-            '<p>Test d’envoi manuel avec la commande Symfony.</p>'
-        ));
+        $games = $this->gameRepository->findUpcomingGames();
+        $users = $this->userRepository->findBy(['subscribedToNewsletter' => true]);
 
-        $output->writeln('Email envoyé avec succès.');
+        if (empty($games)) {
+            $output->writeln('<comment>Aucun jeu à venir cette semaine.</comment>');
+            return Command::SUCCESS;
+        }
+
+        foreach ($users as $user) {
+            $this->emailService->sendNewsletter($user->getEmail(), $games);
+            $output->writeln(' Email envoyé à : ' . $user->getEmail());
+        }
+
+        $output->writeln('<info>Newsletter envoyée avec succès à tous les abonnés.</info>');
         return Command::SUCCESS;
     }
 }
