@@ -1593,16 +1593,16 @@
         },
         {
             "name": "nelmio/api-doc-bundle",
-            "version": "v5.6.4",
+            "version": "v5.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "213eba9594673ac7326799254f0ea82ec2db9bae"
+                "reference": "eb0453607560e63bbbc6a746978933f77a787575"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/213eba9594673ac7326799254f0ea82ec2db9bae",
-                "reference": "213eba9594673ac7326799254f0ea82ec2db9bae",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/eb0453607560e63bbbc6a746978933f77a787575",
+                "reference": "eb0453607560e63bbbc6a746978933f77a787575",
                 "shasum": ""
             },
             "require": {
@@ -1704,7 +1704,7 @@
             ],
             "support": {
                 "issues": "https://github.com/nelmio/NelmioApiDocBundle/issues",
-                "source": "https://github.com/nelmio/NelmioApiDocBundle/tree/v5.6.4"
+                "source": "https://github.com/nelmio/NelmioApiDocBundle/tree/v5.6.5"
             },
             "funding": [
                 {
@@ -1712,7 +1712,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2025-10-17T19:28:44+00:00"
+            "time": "2025-10-20T08:34:48+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -7375,7 +7375,7 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {},
+    "stability-flags": [],
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
@@ -7383,6 +7383,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": {},
+    "platform-dev": [],
     "plugin-api-version": "2.6.0"
 }

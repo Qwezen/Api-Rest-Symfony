@@ -14,7 +14,7 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use App\Message\SendEmailMessage;
 use Symfony\Component\Messenger\MessageBusInterface;
 use App\Repository\UserRepository;
-use App\Repository\GameRepository;
+use App\Repository\VideoGameRepository;
 use App\Service\EmailService;
 
 #[AsCommand(
@@ -25,7 +25,7 @@ class SendNewsletterCommand extends Command
 {
     public function __construct(        
         private UserRepository $userRepository,
-        private GameRepository $gameRepository,
+        private VideoGameRepository $videogameRepository,
         private EmailService $emailService
     ){
         parent::__construct();
