@@ -20,10 +20,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 #[Route('/api/v1/editors')]
 final class EditorController extends AbstractController
 {
-    /**
-     * 🟢 Liste de tous les éditeurs
-     * GET /api/v1/editors
-     */
+    /* Liste de tous les éditeurs */
+   
     #[Route('', name: 'get_editors', methods: ['GET'])]
     public function getEditors(EditorRepository $editorRepository): JsonResponse
     {
@@ -31,10 +29,8 @@ final class EditorController extends AbstractController
         return $this->json($editors, Response::HTTP_OK);
     }
 
-    /**
-     * 🔵 Détails d’un éditeur par ID
-     * GET /api/v1/editors/{id}
-     */
+    /* Détails d’un éditeur par ID */
+
     #[Route('/{id}', name: 'get_editor', requirements: ['id' => Requirement::DIGITS], methods: ['GET'])]
     public function getEditor(int $id, EditorRepository $editorRepository): JsonResponse
     {
@@ -47,10 +43,8 @@ final class EditorController extends AbstractController
         return $this->json($editor, Response::HTTP_OK);
     }
 
-    /**
-     * 🟡 Créer un éditeur (ADMIN uniquement)
-     * POST /api/v1/editors/create
-     */
+    /* Créer un éditeur (ADMIN uniquement)*/
+
     #[IsGranted('ROLE_ADMIN', message: 'Seuls les administrateurs peuvent créer des éditeurs.')]
     #[Route('/create', name: 'create_editor', methods: ['POST'])]
     public function createEditor(
@@ -80,10 +74,8 @@ final class EditorController extends AbstractController
         return $this->json($editor, Response::HTTP_CREATED, ["Location" => $location]);
     }
 
-    /**
-     * 🟠 Mettre à jour un éditeur (ADMIN uniquement)
-     * PUT /api/v1/editors/update/{id}
-     */
+    /* Mettre à jour un éditeur (ADMIN uniquement)*/
+
     #[IsGranted('ROLE_ADMIN', message: 'Seuls les administrateurs peuvent modifier des éditeurs.')]
     #[Route('/update/{id}', name: 'update_editor', requirements: ['id' => Requirement::DIGITS], methods: ['PUT', 'PATCH'])]
     public function updateEditor(
@@ -115,10 +107,8 @@ final class EditorController extends AbstractController
         return $this->json(['message' => 'Éditeur mis à jour avec succès ✅'], Response::HTTP_OK);
     }
 
-    /**
-     * 🔴 Supprimer un éditeur (ADMIN uniquement)
-     * DELETE /api/v1/editors/delete/{id}
-     */
+    /* Supprimer un éditeur (ADMIN uniquement)*/
+
     #[IsGranted('ROLE_ADMIN', message: 'Seuls les administrateurs peuvent supprimer des éditeurs.')]
     #[Route('/delete/{id}', name: 'delete_editor', requirements: ['id' => Requirement::DIGITS], methods: ['DELETE'])]
     public function deleteEditor(Editor $editor, EntityManagerInterface $em): JsonResponse
