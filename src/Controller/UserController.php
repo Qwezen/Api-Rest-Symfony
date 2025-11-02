@@ -107,11 +107,7 @@ class UserController extends AbstractController
 
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/update/{id}', name: 'user_update', methods: ['PUT', 'PATCH'])]
-    public function update(
-        User $user,
-        Request $request,
-        EntityManagerInterface $em,
-        UserPasswordHasherInterface $passwordHasher
+    public function update(User $user,  Request $request,  EntityManagerInterface $em,  UserPasswordHasherInterface $passwordHasher
     ): JsonResponse {
         $data = json_decode($request->getContent(), true);
 
@@ -119,7 +115,7 @@ class UserController extends AbstractController
             return $this->json(['error' => 'Format JSON invalide.'], Response::HTTP_BAD_REQUEST);
         }
 
-        //  Mise à jour de l'email
+        
         if (isset($data['email'])) {
             if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
                 return $this->json(['error' => 'Adresse email invalide.'], Response::HTTP_BAD_REQUEST);
@@ -127,13 +123,13 @@ class UserController extends AbstractController
             $user->setEmail($data['email']);
         }
 
-        //  Mise à jour du mot de passe
+       
         if (isset($data['password']) && !empty($data['password'])) {
             $hashedPassword = $passwordHasher->hashPassword($user, $data['password']);
             $user->setPassword($hashedPassword);
         }
 
-        //  Mise à jour des rôles
+       
         if (isset($data['roles'])) {
             if (!is_array($data['roles'])) {
                 return $this->json(['error' => 'Le champ roles doit être un tableau.'], Response::HTTP_BAD_REQUEST);
@@ -141,7 +137,7 @@ class UserController extends AbstractController
             $user->setRoles($data['roles']);
         }
 
-        //  Mise à jour de l’abonnement à la newsletter
+      
         if (isset($data['subscription_to_newsletter'])) {
             $subscriptionValue = filter_var($data['subscription_to_newsletter'], FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
             if ($subscriptionValue === null) {
@@ -150,7 +146,7 @@ class UserController extends AbstractController
             $user->setSubscriptionToNewsletter($subscriptionValue);
         }
 
-        //  Sauvegarde en base
+    
         $em->flush();
 
         return $this->json([
