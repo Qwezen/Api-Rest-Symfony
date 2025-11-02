@@ -1,10 +1,16 @@
 # Api-Rest-Symfony
 Projet Api Rest Symfony - Licence - Pour C.Haller.
 
+email: tintin@gmail.com
+
+password: tintin1760
+
 # Stack
- Method : Api Rest.
- Framework : Symfony.
- Outils : Postman, Mailer.
+Method : Api Rest.
+ 
+Framework : Symfony.
+ 
+Outils : Postman, Mailer.
 
 ## TP: Créer une API Symfony
 
