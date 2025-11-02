@@ -17,7 +17,7 @@ class SendEmailMessageHandler implements MessageHandlerInterface
 
     public function __invoke(SendEmailMessage $message): void
     {
-        // do something with your message
+        
 
         $this->emailService->sendEmail(
             $message->to,

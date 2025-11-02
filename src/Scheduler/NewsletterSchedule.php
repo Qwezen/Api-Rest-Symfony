@@ -37,6 +37,6 @@ final class NewsletterSchedule implements ScheduleProviderInterface
             'user@example.com',
             'Bonjour !',
             '<p>Ceci est un email planifié.</p>'
-        )))->cron('30 8 * * 1'); // tous les lundis à 8h30
+        )))->cron('30 8 * * 1'); // tous les lundis à 8h30 voir consignes
     }
 }

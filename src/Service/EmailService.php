@@ -1,6 +1,5 @@
 <?php
 
-// src/Service/EmailService.php
 
 namespace App\Service;
 
