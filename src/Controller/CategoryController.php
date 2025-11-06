@@ -31,7 +31,6 @@ class CategoryController extends AbstractController
     }
 
     /*  Afficher une catégorie par ID */
-   
     #[Route('/show/{id}', name: 'category_show', methods: ['GET'])]
     public function show(Category $category): JsonResponse
     {
@@ -42,8 +41,7 @@ class CategoryController extends AbstractController
     }
 
     
-     /*  Créer une catégorie (ADMIN uniquement)*/
-
+    /*  Créer une catégorie (ADMIN uniquement)*/
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/create', name: 'category_create', methods: ['POST'])]
     public function create(
@@ -60,7 +58,7 @@ class CategoryController extends AbstractController
         $category = new Category();
         $category->setName($data['name']);
 
-        //  Validation avec Assert
+        
         $errors = $validator->validate($category);
         if (count($errors) > 0) {
             $errorMessages = [];
@@ -80,7 +78,6 @@ class CategoryController extends AbstractController
     }
 
     /*  Mettre à jour une catégorie (ADMIN uniquement)*/
-
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/update/{id}', name: 'category_update', methods: ['PUT', 'PATCH'])]
     public function update(
@@ -111,7 +108,6 @@ class CategoryController extends AbstractController
     }
 
     /* Supprimer une catégorie (ADMIN uniquement)*/
-
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete/{id}', name: 'category_delete', methods: ['DELETE'])]
     public function delete(Category $category, EntityManagerInterface $em): JsonResponse

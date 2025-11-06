@@ -10,12 +10,12 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
-
 use App\Message\SendEmailMessage;
 use Symfony\Component\Messenger\MessageBusInterface;
 use App\Repository\UserRepository;
 use App\Repository\VideoGameRepository;
 use App\Service\EmailService;
+
 
 #[AsCommand(
     name: 'app:send-newsletter',

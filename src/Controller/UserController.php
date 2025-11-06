@@ -17,8 +17,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 #[Route('/api/users')]
 class UserController extends AbstractController
 {
-    /*  Lister tous les utilisateurs */
-
+    /**  Lister tous les utilisateurs */
     #[Route('/list', name: 'user_list', methods: ['GET'])]
     public function list(UserRepository $userRepository): JsonResponse
     {
@@ -33,8 +32,7 @@ class UserController extends AbstractController
         return $this->json($data);
     }
 
-    /*  Afficher un utilisateur par ID */
-
+    /**  Afficher un utilisateur par ID */
     #[Route('/show/{id}', name: 'user_show', methods: ['GET'])]
     public function show(User $user): JsonResponse
     {
@@ -45,8 +43,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    /*  Créer un utilisateur (ADMIN uniquement)*/
-
+    /**  Créer un utilisateur (ADMIN uniquement)*/
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/create', name: 'user_create', methods: ['POST'])]
     public function create(
@@ -161,8 +158,7 @@ class UserController extends AbstractController
     }
 
 
-    /* Supprimer un utilisateur (ADMIN uniquement)*/
-
+    /** Supprimer un utilisateur (ADMIN uniquement)*/
     #[IsGranted('ROLE_ADMIN')]
     #[Route('/delete/{id}', name: 'user_delete', methods: ['DELETE'])]
     public function delete(User $user, EntityManagerInterface $em): JsonResponse

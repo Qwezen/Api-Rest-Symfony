@@ -23,7 +23,7 @@ final class VideoGameController extends AbstractController
     public function index(): Response
     {
         return $this->json([
-            'message' => 'Bienvenue sur mon API Symfony ! 🚀',
+            'message' => 'Bienvenue sur mon API Symfony ! ',
         ]);
     }
 
@@ -36,15 +36,6 @@ final class VideoGameController extends AbstractController
         ]);
     }
 
-    // #[Route('/api/v1/videogames', name: 'videogames', methods:['GET'])]
-    // public function getVideogames(VideogameRepository $videogameRepository, SerializerInterface $serializer): JsonResponse
-    // {
-    //     $videogameList = $videogameRepository->findAll();
-
-    //     $jsonVideogames = $serializer->serialize($videogameList, 'json', ['groups' => 'getVideogame']);
-
-    //     return $this->json($videogameList, Response::HTTP_OK, [], ['groups' => 'getVideogame']);
-    // }
 
     #[Route('/api/v1/videogames', name: 'videogames', methods:['GET'])]
     public function getVideogames(VideogameRepository $videogameRepository, SerializerInterface $serializer, Request $request, TagAwareCacheInterface $cachePool): JsonResponse
@@ -94,8 +85,6 @@ final class VideoGameController extends AbstractController
     #[Route('/api/v1/videogame/{id}', name: 'updateVideogame', methods: ['PUT'])]
     public function updateVideogame(Request $request, SerializerInterface $serializer, VideoGame $currentVideogame, EntityManagerInterface $em, UrlGeneratorInterface $urlGenerator): JsonResponse {
 
-       // Revoir/ajouter les Asserts pages 72
-       // $errors = $validator->validate...
 
         $updatedVideogame = $serializer->deserialize($request->getContent(), VideoGame::class, 'json', [AbstractNormalizer::OBJECT_TO_POPULATE => $currentVideogame]);
         $em->persist($updatedVideogame);
